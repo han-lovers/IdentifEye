@@ -67,3 +67,51 @@ main {
 .listOption button:hover {
     background-color: #f2bdd4;
 }
+
+.subeFile {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f3f3f3;
+    text-align: left;
+  }
+  
+  .input {
+    margin-bottom: 10px;
+  }
+  
+  .input input[type="file"] {
+    display: block;
+    width: 100%;
+  }
+  
+  .submit {
+    padding: 8px 15px;
+    font-size: 14px;
+    color: #ffffff;
+    background-color: #28a745;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .submit:hover {
+    background-color: #218838;
+  }
+  
+  section p {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  
+  section ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  section ul li {
+    font-size: 14px;
+    color: #555;
+  }
