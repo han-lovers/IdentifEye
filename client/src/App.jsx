@@ -8,9 +8,8 @@ import Header from "./styles/js/Header";
 function App() {
     return (
         <>
-            <Header /> {/* Add header to every route */}
-
             <BrowserRouter>
+              <Header /> {/* Add header to every route */}
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/scan" element={<Scan />} />
