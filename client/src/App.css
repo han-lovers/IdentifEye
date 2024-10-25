@@ -61,7 +61,7 @@ main {
 
 .Button {
   margin-top: 20px;
-  background-color: #e42d95;
+  background-color: #e00297;
   color: white;
   border: none;
   font-size: 16px;
@@ -71,5 +71,5 @@ main {
 }
 
 .next-button:hover {
-  background-color: #c996b0;
+  background-color: #f2bdd4;
 }
