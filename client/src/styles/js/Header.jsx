@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import "../css/Header.css";
+import Logo from "../../assets/icons/liverpool-logo.svg";
 
 const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -17,7 +18,7 @@ const Header = () => {
 
     return (
         <nav className="nav-bar">
-            <div className="title">Fortnite pro</div>
+            <img src={Logo} width={250} height={50} alt="logo" />
             <div className="menu" onClick={handleMenuOpen}>
                 <span className="line"></span>
                 <span className="line"></span>
@@ -25,13 +26,10 @@ const Header = () => {
             </div>
             <ul className={`list ${menuOpen ? "open" : ""}`}>
                 <li className="nav-item">
-                    <div className="nav-text">Snoodytv</div>
+                    <div className="nav-text">Home</div>
                 </li>
                 <li className="nav-item">
-                    <div className="nav-text">Varbi</div>
-                </li>
-                <li className="nav-item">
-                    <div className="nav-text">Varbo</div>
+                    <div className="nav-text">Scan</div>
                 </li>
             </ul>
         </nav>

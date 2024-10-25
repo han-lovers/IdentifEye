@@ -38,6 +38,7 @@
 }
 .nav-text:hover{
     color: black;
+    cursor: pointer;
 }
 
 .nav-bar .menu {
@@ -49,6 +50,10 @@
     justify-content: space-between;
     width: 36px;
     height: 32px;
+}
+
+.nav-bar .menu:hover {
+    cursor: pointer;
 }
 
 .nav-bar .menu .line {
@@ -70,22 +75,23 @@
     }
 
     .list {
-        display: none;
+        display: flex;
         margin-right: 0;
         position: absolute;
-        display: flex;
         background: #f2bdd4;
         top: 100%;
-        height: 230px;
+        height: 160px;
         flex-direction: column;
         width: 100%;
         margin-bottom: 4px;
-        right: -700px;
-        transition: right 0.4s ease-in-out;
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
     }
 
     .list.open {
-        right: 0px;
+        opacity: 1;
+        transform: translateY(0);
     }
 
     .nav-item {
