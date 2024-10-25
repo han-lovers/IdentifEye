@@ -66,10 +66,10 @@ main {
   border: none;
   font-size: 16px;
   padding: 10px 20px;
-  border-radius: 5px;
+  border-radius: 100px;
   cursor: pointer;
 }
 
 .next-button:hover {
-  background-color: #483d8b;
+  background-color: #c996b0;
 }
