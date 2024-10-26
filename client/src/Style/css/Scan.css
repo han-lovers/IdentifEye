@@ -70,13 +70,11 @@ main {
 
 .subeFile {
     margin-top: 20px;
+    align-items: center;
     padding: 20px;
-    border: 1px solid #ddd;
     border-radius: 6px;
     background-color: rgba(241, 219, 233, 0.9); 
-    -webkit-box-shadow: 7px 6px 17px 0px rgba(0,0,0,0.83); 
-    box-shadow: 7px 6px 17px 0px rgba(0,0,0,0.83);
-    text-align: left;
+    text-align: center;
   }
   
   .input {
@@ -89,17 +87,39 @@ main {
   }
   
   .submit {
-    padding: 8px 15px;
-    font-size: 14px;
-    color: #ffffff;
+    margin-top: 20px;
     background-color: #e00297;
+    color: white;
     border: none;
-    border-radius: 5px;
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 100px;
     cursor: pointer;
-    transition: background-color 0.2s ease;
   }
+  
   
   .submit:hover {
     background-color: #e00297;
   }
   
+  .button-container {
+    .button-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+      }
+      
+      .Button, .submit {
+        background-color: #e00297;
+        color: white;
+        border: none;
+        font-size: 16px;
+        padding: 10px 20px;
+        border-radius: 100px;
+        cursor: pointer;
+      }
+      
+      .Button:hover, .submit:hover {
+        background-color: #f2bdd4;
+      }

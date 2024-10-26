@@ -2,7 +2,7 @@ import { React, useState, useRef } from "react";
 import typeImage from "../assets/icon/upload.png";
 import "../Style/css/Scan.css";
 
-function SingleFileUploader({ setShowImage }) {
+function SingleFileUploader({ setShowImage}) {
   const [file, setFile] = useState(null);
 
   const handleFileChange = (e) => {
@@ -18,6 +18,11 @@ function SingleFileUploader({ setShowImage }) {
 
   return (
     <div className="subeFile">
+      <h2>
+        <strong>
+        Selecciona tu archivo
+        </strong>
+      </h2>
       <div className="input">
         <input id="file" type="file" onChange={handleFileChange} />
       </div>
@@ -78,4 +83,4 @@ function Scan() {
                 );
               }
               
-              export default Scan;
+export default Scan;
