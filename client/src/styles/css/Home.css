@@ -58,13 +58,28 @@
 
 .carousel__item {
     flex: 1;
-    min-width: 200px;
-    padding: 20px;
+    min-width: 100px;
+    padding: 10px;
     background-color: #ccc;
     text-align: center;
     border-radius: 8px;
     color: #333;
 }
+
+.image {
+    width: 70%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.image2 {
+    width: 50%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
 
 /* Categorías */
 .categories {
@@ -115,6 +130,8 @@
     gap: 20px;
     flex-wrap: wrap;
     justify-content: center;
+    align-content: center;
+    justify-content: space-evenly;
 }
 
 .product-card {
