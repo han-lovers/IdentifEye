@@ -47,8 +47,9 @@
 /* Carrusel */
 .carousel {
     display: flex;
-    overflow: auto;
-    justify-content: center;
+    overflow-x: auto;
+    overflow-y: hidden;
+    justify-content: space-between;
     gap: 10px;
     padding: 20px 0;
     width: 100%;
@@ -56,6 +57,7 @@
 }
 
 .carousel__item {
+    flex: 1;
     min-width: 200px;
     padding: 20px;
     background-color: #ccc;
