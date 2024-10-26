@@ -1,4 +1,5 @@
 import React, { useRef, useCallback, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Webcam from "react-webcam";
 import PropTypes from "prop-types";
 import "../styles/css/webcam.css";
@@ -9,14 +10,25 @@ const videoConstraints = {
     facingMode: FACING_MODE_ENVIRONMENT
 };
 
-const WebcamCapture = ({ onCancel, onConfirm }) => {
+const WebcamCapture = ({ onCancel, onConfirm, handleUpload, setIsLoading }) => {
     const webcamRef = useRef(null);
     const [capturedImage, setCapturedImage] = useState(null);
+    const navigate = useNavigate();
 
     const capture = useCallback(() => {
         const imageSrc = webcamRef.current.getScreenshot();
         setCapturedImage(imageSrc);
     }, [webcamRef]);
+
+    const confirmAndUpload = async () => {
+        setIsLoading(true);
+        onConfirm(capturedImage);
+        await handleUpload(capturedImage);
+        setTimeout( () => {
+            setIsLoading(false);
+            navigate("/results");
+        }, 20000);
+    };
 
     return (
         <div className="webcam-container">
@@ -24,7 +36,7 @@ const WebcamCapture = ({ onCancel, onConfirm }) => {
                 audio={false}
                 ref={webcamRef}
                 screenshotFormat="image/jpeg"
-                width={{width:"100%"}}
+                style={{width:"100%"}}
                 videoConstraints={videoConstraints}
             />
             <button onClick={capture}>Tomar foto</button>
@@ -32,7 +44,7 @@ const WebcamCapture = ({ onCancel, onConfirm }) => {
             {capturedImage && (
                 <>
                     <img src={capturedImage} alt="Captured" className="captured-image" />
-                    <button onClick={() => onConfirm(capturedImage)}>Confirm</button>
+                    <button onClick={confirmAndUpload}>Confirmar y subir</button>
                 </>
             )}
         </div>
@@ -42,6 +54,8 @@ const WebcamCapture = ({ onCancel, onConfirm }) => {
 WebcamCapture.propTypes = {
     onCancel: PropTypes.func.isRequired,
     onConfirm: PropTypes.func.isRequired,
+    handleUpload: PropTypes.func.isRequired,
+    setIsLoading: PropTypes.func.isRequired,
 };
 
 export default WebcamCapture;

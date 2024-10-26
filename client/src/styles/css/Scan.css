@@ -47,6 +47,10 @@ main {
   cursor: pointer;
 }
 
+.Button:hover {
+    background-color: #f2bdd4;
+}
+
 .next-button:hover {
   background-color: #f2bdd4;
 }
@@ -107,6 +111,21 @@ main {
   transition: background-color 0.2s ease;
 }
 
-.submit:hover {
+.cancel {
+  padding: 8px 15px;
+  font-size: 14px;
+  color: #ffffff;
   background-color: #e00297;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.submit:hover {
+  background-color: #f2bdd4;
+}
+
+.cancel:hover {
+  background-color: #f2bdd4;
 }
