@@ -1,21 +1,22 @@
-import React, { useRef, useCallback } from "react";
+import React, { useRef, useCallback, useState } from "react";
 import Webcam from "react-webcam";
-import PropTypes from "prop-types"; // Importa PropTypes
-import "../styles/css/webcam.css"; // Asegúrate de la ruta correcta
+import PropTypes from "prop-types";
+import "../styles/css/webcam.css";
 
 const FACING_MODE_ENVIRONMENT = "environment";
 
 const videoConstraints = {
-    facingMode: FACING_MODE_ENVIRONMENT // Usa la cámara trasera
-}
+    facingMode: FACING_MODE_ENVIRONMENT
+};
 
-const WebcamCapture = ({ onCapture, onCancel }) => {
+const WebcamCapture = ({ onCancel, onConfirm }) => {
     const webcamRef = useRef(null);
+    const [capturedImage, setCapturedImage] = useState(null);
 
     const capture = useCallback(() => {
         const imageSrc = webcamRef.current.getScreenshot();
-        onCapture(imageSrc); // Llama a la función pasada como prop
-    }, [webcamRef, onCapture]);
+        setCapturedImage(imageSrc);
+    }, [webcamRef]);
 
     return (
         <div className="webcam-container">
@@ -23,19 +24,24 @@ const WebcamCapture = ({ onCapture, onCancel }) => {
                 audio={false}
                 ref={webcamRef}
                 screenshotFormat="image/jpeg"
-                width={400} // Ajusta el tamaño según sea necesario
+                width={400}
                 videoConstraints={videoConstraints}
             />
             <button onClick={capture}>Tomar foto</button>
             <button onClick={onCancel}>Cancelar</button>
+            {capturedImage && (
+                <>
+                    <img src={capturedImage} alt="Captured" className="captured-image" />
+                    <button onClick={() => onConfirm(capturedImage)}>Confirmar</button>
+                </>
+            )}
         </div>
     );
 };
 
-// Agrega la validación de props
 WebcamCapture.propTypes = {
-    onCapture: PropTypes.func.isRequired, // Asegúrate de que es una función y es requerida
-    onCancel: PropTypes.func.isRequired,   // Asegúrate de que es una función y es requerida
+    onCancel: PropTypes.func.isRequired,
+    onConfirm: PropTypes.func.isRequired,
 };
 
 export default WebcamCapture;
