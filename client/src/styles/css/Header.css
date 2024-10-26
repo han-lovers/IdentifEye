@@ -1,32 +1,36 @@
-.nav-bar{
+.nav-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #e42d95;
     position: sticky;
     top: 0;
-    z-index: 2;
+    z-index: 1000;
     width: 100%;
     height: 110px;
 }
 
-.title{
+.title {
     font-size: 40px;
     margin: 16px;
     font-weight: bold;
     text-decoration: none;
     color: white;
 }
-.list{
-    display: flex;
+
+.list {
+    display: flex; /* Mostrar la lista en pantallas grandes */
     margin-right: 16px;
+    z-index: 1001;
 }
+
 .nav-item {
     list-style: none;
     width: 100%;
     text-align: center;
 }
-.nav-text{
+
+.nav-text {
     display: block;
     font-weight: bold;
     text-decoration: none;
@@ -36,7 +40,8 @@
     text-transform: uppercase;
     margin: 4px;
 }
-.nav-text:hover{
+
+.nav-text:hover {
     color: black;
     cursor: pointer;
 }
@@ -50,6 +55,8 @@
     justify-content: space-between;
     width: 36px;
     height: 32px;
+    z-index: 1000;
+    margin: 10px;
 }
 
 .nav-bar .menu:hover {
@@ -61,6 +68,7 @@
     width: 100%;
     background: white;
     border-radius: 1px;
+    z-index: 100;
 }
 
 @media (max-width: 850px) {
@@ -68,19 +76,22 @@
         font-size: 20px;
     }
 }
+
 @media (max-width: 700px) {
     .nav-bar .menu {
-        display: flex;
+        display: flex; /* Mostrar menú en pantallas pequeñas */
         margin-top: 24px;
+        z-index: 100;
     }
 
     .list {
-        display: flex;
+        display: none; /* Ocultar el menú por defecto */
         margin-right: 0;
+        z-index: 100;
         position: absolute;
         background: #f2bdd4;
         top: 100%;
-        height: 160px;
+        height: auto; /* Permitir que la altura se ajuste al contenido */
         flex-direction: column;
         width: 100%;
         margin-bottom: 4px;
@@ -90,6 +101,7 @@
     }
 
     .list.open {
+        display: flex; /* Hacer que el menú sea un flexbox cuando está abierto */
         opacity: 1;
         transform: translateY(0);
     }
