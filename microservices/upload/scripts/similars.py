@@ -111,13 +111,3 @@ class ImageSimilarityFinder:
             return self.prepare_images_json(folder, matching_images)
 
         return json.dumps([])
-    
-# finder = ImageSimilarityFinder(
-#         firebase_key_path='../secret/serviceAccountKey.json',
-#         firestore_collection='embeddings'
-#     )
-
-# matching_images = finder.find_and_prepare_similar_images(
-#         input_image_path=str("./prueba.jpeg"),
-#         folder='../secret/imagenes'
-#     )
