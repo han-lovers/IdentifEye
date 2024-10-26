@@ -1,8 +1,9 @@
 import { React, useState, useRef } from "react";
-import camisa1 from "../assets/icons/camisa1.jpeg";
-import camisa2 from "../assets/icons/camisa2.jpeg";
-import camisa3 from "../assets/icons/camisa3.jpeg";
-import camisa4 from "../assets/icons/camisa4.jpeg";
+const fotoPrincipal = //Lo que saca el codigo de josemilio
+const secundaria1 = //Lo que saca el codigo de ponchiyo
+const secundaria2 =
+const secundaria3 =
+const secundaria4 =
 import shipping from "../assets/icons/free-delivery.png";
 import stars from "../assets/icons/stars.png";
 import "../styles/css/Results.css";
@@ -12,7 +13,7 @@ function Results() {
         <div>
             <div className="container">
                 <div className="item">
-                    <img src={camisa1} alt="Imagen 1" />
+                    <img src={`data:image/jpeg;base64,${fotoPrincipal}`} alt="Imagen 1" />
                 </div>
                 <div className="itemBlanco">
                     <div className="containerColumn">
@@ -67,12 +68,12 @@ function Results() {
                         <label><strong>You might like...</strong></label>
                     </div>
                     <div className="item2">
-                        <img src={camisa2} alt="Imagen 2" className="like-image"/>
-                        <img src={camisa3} alt="Imagen 3" className="like-image"/>
-                        <img src={camisa4} alt="Imagen 4" className="like-image"/>
-                        <img src={camisa2} alt="Imagen 2" className="like-image"/>
-                        <img src={camisa3} alt="Imagen 3" className="like-image"/>
-                        <img src={camisa4} alt="Imagen 4" className="like-image"/>
+                        <img src={`data:image/jpeg;base64,${secundaria1}`} alt="Imagen 2" className="like-image"/>
+                        <img src={`data:image/jpeg;base64,${secundaria2}`} alt="Imagen 3" className="like-image"/>
+                        <img src={`data:image/jpeg;base64,${secundaria3}`} alt="Imagen 3" className="like-image"/>
+                        <img src={`data:image/jpeg;base64,${secundaria4}`} alt="Imagen 3" className="like-image"/>
+                        <img src={`data:image/jpeg;base64,${secundaria2}`} alt="Imagen 3" className="like-image"/>
+                        <img src={`data:image/jpeg;base64,${secundaria1}`} alt="Imagen 3" className="like-image"/>
                     </div>
                 </div>
             </div>
