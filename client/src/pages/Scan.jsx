@@ -17,6 +17,9 @@ function SingleFileUploader({ setShowImage }) {
 
     return (
         <div className="subeFile">
+            <h2>
+                <strong>Choose your file</strong>
+            </h2>
             <div className="input">
                 <input id="file" type="file" onChange={handleFileChange} />
             </div>
