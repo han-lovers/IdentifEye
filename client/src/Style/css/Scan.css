@@ -101,25 +101,3 @@ main {
   .submit:hover {
     background-color: #e00297;
   }
-  
-  .button-container {
-    .button-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-top: 20px;
-      }
-      
-      .Button, .submit {
-        background-color: #e00297;
-        color: white;
-        border: none;
-        font-size: 16px;
-        padding: 10px 20px;
-        border-radius: 100px;
-        cursor: pointer;
-      }
-      
-      .Button:hover, .submit:hover {
-        background-color: #f2bdd4;
-      }
