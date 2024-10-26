@@ -1,0 +1,31 @@
+/* WebcamCapture.css */
+.webcam-container {
+    background-color: rgba(241, 219, 233, 0.9);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    height: 500px; /* Ajusta la altura según sea necesario */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.webcam-container button {
+    margin-top: 10px; /* Margen para los botones */
+    background-color: #e00297; /* Color de fondo similar al botón original */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    font-size: 16px; /* Tamaño de fuente */
+    padding: 10px 20px; /* Espaciado interno */
+    border-radius: 100px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar por encima */
+    transition: background-color 0.3s; /* Transición suave para el cambio de color */
+}
+
+.webcam-container button:hover {
+    background-color: #f2bdd4; /* Color de fondo al pasar el ratón */
+}
