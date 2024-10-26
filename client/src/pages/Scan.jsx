@@ -1,9 +1,13 @@
+// Scan.jsx
 import { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import WebcamCapture from "../components/webcam.jsx";
 import typeImage from "../assets/icons/upload.png";
 import "../styles/css/Scan.css";
+import LoadingScreen from "../components/LoadingScreen";
+import PropTypes from 'prop-types';
 
-function SingleFileUploader({ setShowImage, setImage, setIsConfirmed, handleCancel }) {
+function SingleFileUploader({ setShowImage, setImage, setIsConfirmed, handleCancel, handleConfirm, setIsLoading, navigate }) {
     const [file, setFile] = useState(null);
 
     const handleFileChange = (e) => {
@@ -13,31 +17,38 @@ function SingleFileUploader({ setShowImage, setImage, setIsConfirmed, handleCanc
         }
     };
 
-    const handleUpload = async () => {
-        setImage(URL.createObjectURL(file));
-        setIsConfirmed(true); // Reset the left side of the screen
+    const handleUpload = async (event) => {
+        event.preventDefault();
+        console.log("Setting isLoading to true");
+        setIsLoading(true); // Show loading screen
+        const imageUrl = URL.createObjectURL(file);
+        setImage(imageUrl);
+        setIsConfirmed(true);
         setFile(null);
         setShowImage(true);
-        // Don't let user to submit if there is no file
-        event.preventDefault();
 
-        const fromData = new FormData();
-        fromData.append("file", file);
+        const formData = new FormData();
+        formData.append("file", file);
 
         try {
             const response = await fetch("/api/upload", {
                 method: "POST",
-                body: fromData,
+                body: formData,
             });
             const data = await response.json();
 
-            const message = data.message;
-            const filePath = data.file_path;
+            console.log("Message: ", data.message);
+            console.log("File path: ", data.file_path);
 
-            console.log("Message: ", message);
-            console.log("File path: ", filePath);
+            handleConfirm(imageUrl);
         } catch (error) {
-            console.log("Error while fetching: ", error);
+            console.error("Error while fetching: ", error);
+        } finally {
+            console.log("Esperando 20 segundos antes de redirigir...");
+            setTimeout(() => {
+                setIsLoading(false); // Hide loading screen
+                navigate("/Results"); // Redirect to /Results after 20 seconds
+            }, 20000);
         }
     };
 
@@ -63,13 +74,25 @@ function SingleFileUploader({ setShowImage, setImage, setIsConfirmed, handleCanc
     );
 }
 
+SingleFileUploader.propTypes = {
+    setShowImage: PropTypes.func.isRequired,
+    setImage: PropTypes.func.isRequired,
+    setIsConfirmed: PropTypes.func.isRequired,
+    handleCancel: PropTypes.func.isRequired,
+    handleConfirm: PropTypes.func.isRequired,
+    setIsLoading: PropTypes.func.isRequired,
+    navigate: PropTypes.func.isRequired,
+};
+
 function Scan() {
     const [showOptions, setShowOptions] = useState(false);
     const [isTakingPhoto, setIsTakingPhoto] = useState(false);
     const [image, setImage] = useState(null);
     const [isConfirmed, setIsConfirmed] = useState(false);
     const [showUploadButton, setShowUploadButton] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const uploadFile = useRef(null);
+    const navigate = useNavigate();
 
     const handleShowOptions = () => {
         setShowOptions(!showOptions);
@@ -97,7 +120,6 @@ function Scan() {
         setShowUploadButton(false);
     };
 
-
     const handleUploadConfirmedImage = async (capturedImage) => {
         const formData = new FormData();
         try {
@@ -113,16 +135,16 @@ function Scan() {
             console.log("Response Headers: ", uploadResponse.headers);
 
             if (!uploadResponse.ok) {
-                const errorText = await uploadResponse.text(); // Obtener el texto de la respuesta
+                const errorText = await uploadResponse.text(); // Get response text
                 console.error("Error response: ", errorText);
-                throw new Error(`Error en la subida: ${uploadResponse.status} ${errorText}`);
+                throw new Error(`Upload error: ${uploadResponse.status} ${errorText}`);
             }
 
-            // Intentar analizar la respuesta como JSON
+            // Try to parse the response as JSON
             const data = await uploadResponse.json();
-            console.log("Respuesta de la subida: ", data);
+            console.log("Upload response: ", data);
         } catch (error) {
-            console.error("Error al subir la imagen: ", error);
+            console.error("Error uploading image: ", error);
         }
     }
 
@@ -137,86 +159,92 @@ function Scan() {
         handleUploadConfirmedImage(capturedImage); // Call the upload function here
     };
 
-
-
     return (
         <>
-            <main>
-                <div
-                    className={`card ${image ? "card-large" : ""}`}
-                    style={{ display: isTakingPhoto ? "none" : "block" }}
-                >
-                    {showImage ? (
-                        <>
-                            <img
-                                src={typeImage}
-                                alt="Type"
-                                className="image-style"
+            {isLoading ? (
+                <LoadingScreen />
+            ) : (
+                <main>
+                    <div
+                        className={`card ${image ? "card-large" : ""}`}
+                        style={{ display: isTakingPhoto ? "none" : "block" }}
+                    >
+                        {showImage ? (
+                            <>
+                                <img
+                                    src={typeImage}
+                                    alt="Type"
+                                    className="image-style"
+                                />
+                                <p>
+                                    <strong>Upload your image</strong>
+                                </p>
+                            </>
+                        ) : (
+                            <SingleFileUploader
+                                setShowImage={setShowImage}
+                                setImage={setImage}
+                                setIsConfirmed={setIsConfirmed}
+                                handleCancel={handleCancel}
+                                handleConfirm={handleConfirm} // Pass handleConfirm to SingleFileUploader
+                                setIsLoading={setIsLoading} // Pass setIsLoading to SingleFileUploader
+                                navigate={navigate} // Pass navigate to SingleFileUploader
                             />
-                            <p>
-                                <strong>Upload your image</strong>
-                            </p>
-                        </>
-                    ) : (
-                        <SingleFileUploader
-                            setShowImage={setShowImage}
-                            setImage={setImage}
-                            setIsConfirmed={setIsConfirmed}
-                            handleCancel={handleCancel}
-                        />
-                    )}
-                    <button className="Button" onClick={handleShowOptions}>
-                        Choose
-                    </button>
-                    {showOptions && (
-                        <div className="listOption">
-                            <button
-                                className="listButtonOption"
-                                onClick={() => {
-                                    setIsTakingPhoto(true);
-                                    setShowOptions(false);
-                                }}
-                            >
-                                Take a photo
-                            </button>
-                            <button
-                                className="listButtonOption"
-                                onClick={handleUploadPhoto}
-                            >
-                                Upload a photo
-                            </button>
-                        </div>
-                    )}
-                </div>
+                        )}
+                        <button className="Button" onClick={handleShowOptions}>
+                            Choose
+                        </button>
+                        {showOptions && (
+                            <div className="listOption">
+                                <button
+                                    className="listButtonOption"
+                                    onClick={() => {
+                                        setIsTakingPhoto(true);
+                                        setShowOptions(false);
+                                    }}
+                                >
+                                    Take a photo
+                                </button>
+                                <button
+                                    className="listButtonOption"
+                                    onClick={handleUploadPhoto}
+                                >
+                                    Upload a photo
+                                </button>
+                            </div>
+                        )}
+                    </div>
 
-                {isTakingPhoto ? (
-                    <WebcamCapture
-                        onCancel={handleCancel}
-                        onConfirm={handleConfirm}
-                        handleUpload={handleUploadConfirmedImage}
-                    />
-                ) : (
-                    image &&
-                    isConfirmed && (
-                        <div
-                            className="webcam-container"
-                            style={{ textAlign: "center" }}
-                            ref={uploadFile}  // Attach the ref here
-                        >
-                            <h2>Imagen confirmada:</h2>
-                            <img
-                                src={image}
-                                alt="Captured"
-                                style={{
-                                    width: "100%",
-                                    maxWidth: "400px",
-                                    borderRadius: "10px",
-                                }}
-                            />
-                        </div>
-                    )
-                )}
-            </main>
+                    {isTakingPhoto ? (
+                        <WebcamCapture
+                            onCancel={handleCancel}
+                            onConfirm={handleConfirm}
+                            handleUpload={handleUploadConfirmedImage}
+                            setIsLoading={setIsLoading} // Pass setIsLoading to WebcamCapture
+                        />
+                    ) : (
+                        image &&
+                        isConfirmed && (
+                            <div
+                                className="webcam-container"
+                                style={{ textAlign: "center" }}
+                                ref={uploadFile}  // Attach the ref here
+                            >
+                                <h2>Imagen confirmada:</h2>
+                                <img
+                                    src={image}
+                                    alt="Captured"
+                                    style={{
+                                        width: "100%",
+                                        maxWidth: "400px",
+                                        borderRadius: "10px",
+                                    }}
+                                />
+                            </div>
+                        )
+                    )}
+                </main>
+            )}
         </>
     );
 }
