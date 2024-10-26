@@ -47,8 +47,9 @@
 /* Carrusel */
 .carousel {
     display: flex;
-    overflow: auto;
-    justify-content: center;
+    overflow-x: auto;
+    overflow-y: hidden;
+    justify-content: flex-start;
     gap: 10px;
     padding: 20px 0;
     width: 100%;
