@@ -8,8 +8,8 @@ main {
 }
 
 .card {
-  background-color: rgba(241, 219, 233, 0.9); 
-  -webkit-box-shadow: 7px 6px 17px 0px rgba(0,0,0,0.83); 
+  background-color: rgba(241, 219, 233, 0.9);
+  -webkit-box-shadow: 7px 6px 17px 0px rgba(0,0,0,0.83);
   box-shadow: 7px 6px 17px 0px rgba(0,0,0,0.83);
   padding: 20px;
   border-radius: 10px;
