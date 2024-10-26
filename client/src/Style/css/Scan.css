@@ -1,0 +1,103 @@
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: black;
+  }
+  
+  .card {
+    background-color: rgba(241, 219, 233, 0.9); 
+    -webkit-box-shadow: 7px 6px 17px 0px rgba(0,0,0,0.83); 
+    box-shadow: 7px 6px 17px 0px rgba(0,0,0,0.83);
+    padding: 20px;
+    border-radius: 10px;
+    width: 50%;
+    text-align: center;
+  }
+  
+  .read-the-docs {
+    color: #888;
+  }
+  
+  .image-style {
+    width: 100%;
+    max-width: 40%;
+    height: auto; 
+  }
+  
+  .Button {
+    margin-top: 20px;
+    background-color: #e00297;
+    color: white;
+    border: none;
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 100px;
+    cursor: pointer;
+  }
+  
+  .next-button:hover {
+    background-color: #f2bdd4;
+  }
+  
+  .listOption {
+    position: absolute;
+    background-color: white;
+    -webkit-box-shadow: 7px 6px 17px 0px rgba(0,0,0,0.83); 
+    box-shadow: 7px 6px 17px 0px rgba(0,0,0,0.83);
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 8px;
+    width: 200px;
+    height: 105px;
+    z-index: 100;
+  }
+
+  .listOption button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background: none;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+.listOption button:hover {
+    background-color: #f2bdd4;
+}
+
+.subeFile {
+    margin-top: 20px;
+    align-items: center;
+    padding: 20px;
+    border-radius: 6px;
+    background-color: rgba(241, 219, 233, 0.9); 
+    text-align: center;
+  }
+  
+  .input {
+    margin-bottom: 10px;
+  }
+  
+  .input input[type="file"] {
+    display: block;
+    width: 100%;
+  }
+  
+  .submit {
+    margin-top: 20px;
+    background-color: #e00297;
+    color: white;
+    border: none;
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 100px;
+    cursor: pointer;
+  }
+  
+  
+  .submit:hover {
+    background-color: #e00297;
+  }
