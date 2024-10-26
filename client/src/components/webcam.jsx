@@ -9,7 +9,7 @@ const videoConstraints = {
     facingMode: FACING_MODE_ENVIRONMENT
 };
 
-const WebcamCapture = ({ onCancel, onConfirm }) => {
+const WebcamCapture = ({ onCancel, onConfirm, handleUpload }) => {
     const webcamRef = useRef(null);
     const [capturedImage, setCapturedImage] = useState(null);
 
@@ -17,6 +17,11 @@ const WebcamCapture = ({ onCancel, onConfirm }) => {
         const imageSrc = webcamRef.current.getScreenshot();
         setCapturedImage(imageSrc);
     }, [webcamRef]);
+
+    const confirmAndUpload = () => {
+        onConfirm(capturedImage);
+        handleUpload(capturedImage);
+    }
 
     return (
         <div className="webcam-container">
@@ -32,7 +37,7 @@ const WebcamCapture = ({ onCancel, onConfirm }) => {
             {capturedImage && (
                 <>
                     <img src={capturedImage} alt="Captured" className="captured-image" />
-                    <button onClick={() => onConfirm(capturedImage)}>Confirmar</button>
+                    <button onClick={confirmAndUpload}>Confirmar y subir</button>
                 </>
             )}
         </div>
@@ -42,6 +47,7 @@ const WebcamCapture = ({ onCancel, onConfirm }) => {
 WebcamCapture.propTypes = {
     onCancel: PropTypes.func.isRequired,
     onConfirm: PropTypes.func.isRequired,
+    handleUpload: PropTypes.func.isRequired,
 };
 
 export default WebcamCapture;
