@@ -19,7 +19,7 @@ const Nav = () => {
                 <span className="line"></span>
                 <span className="line"></span>
             </div>
-            <ul className={`list ${menuOpen ? "open" : ""}`} style={{ display: menuOpen ? 'block' : 'none' }}>
+            <ul className={`list ${menuOpen ? "open" : ""}`}>
                 <li className="nav-item">
                     <Link to="/" className="nav-text">Home</Link>
                 </li>
