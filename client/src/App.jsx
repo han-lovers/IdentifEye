@@ -11,11 +11,11 @@ function App() {
         <>
             <BrowserRouter>
               <Header /> {/* Add header to every route */}
-                <Route>
+                <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/scan" element={<Scan />} />
                     <Route path="/results" element={<Results />}/>
-                </Route>
+                </Routes>
             </BrowserRouter>
 
             <Footer /> {/* Add footer to every route */}
