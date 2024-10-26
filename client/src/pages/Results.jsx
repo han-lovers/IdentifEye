@@ -1,14 +1,7 @@
-import { React, useState, useRef } from "react";
+import { React, useState, useEffect, useRef } from "react";
 import shipping from "../assets/icons/free-delivery.png";
 import stars from "../assets/icons/stars.png";
 import "../styles/css/Results.css";
-// let matching = sessionStorage.getItem("matching");
-//     console.log(matching);
-// if(matching) {
-//     matching = JSON.parse(matching);
-//     const fotoPrincipal = matching.data;
-//     console.log(fotoPrincipal);
-// }
 
 // const secundaria1 = 
 // const secundaria2 =
@@ -16,12 +9,40 @@ import "../styles/css/Results.css";
 // const secundaria4 =
 
 function Results() {
+    const [similarArr, setSimilarArr] = useState([]);
+
+    const [matchingName, setMatchingName] = useState(null);
+    const [matchingData, setMatchingData] = useState(null);
+
+    useEffect(() => {
+        const storedSimilar = localStorage.getItem('similar');
+        const storedMatchingData = localStorage.getItem('matching');
+        if (storedMatchingData) {
+            const matching = JSON.parse(storedMatchingData);
+
+            // Access the 'name' and 'data' fields directly
+            if (matching.name && matching.data) {
+                setMatchingName(matching.name);
+                setMatchingData(matching.data);
+            }
+        }
+        if(storedSimilar) {
+            const similar = JSON.parse(storedSimilar)
+            setSimilarArr(similar);
+        }
+    }, []);
+
+    const fotoPrincipal = matchingData;
+    console.log(fotoPrincipal);
+    
+    console.log(similarArr);
+    
     return (
         <div>
             <div className="container">
-                {/* <div className="item">
-                    <img src={⁠`data:image/jpeg;base64,${fotoPrincipal}`⁠} alt="Imagen 1" />
-                </div> */}
+                <div className="item">
+                    <img src={`data:image/jpeg;base64,${fotoPrincipal}`} alt="Imagen 1" />
+                </div>
                 <div className="itemBlanco">
                     <div className="containerColumn">
                         <div className="itemBlanco">

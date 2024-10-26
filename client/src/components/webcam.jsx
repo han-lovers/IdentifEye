@@ -10,9 +10,10 @@ const videoConstraints = {
     facingMode: FACING_MODE_ENVIRONMENT
 };
 
-const WebcamCapture = ({ onCancel, onConfirm, handleUpload }) => {
+const WebcamCapture = ({ onCancel, onConfirm, handleUpload, setIsLoading }) => {
     const webcamRef = useRef(null);
     const [capturedImage, setCapturedImage] = useState(null);
+    const navigate = useNavigate();
 
     const capture = useCallback(() => {
         const imageSrc = webcamRef.current.getScreenshot();
@@ -27,7 +28,7 @@ const WebcamCapture = ({ onCancel, onConfirm, handleUpload }) => {
             setIsLoading(false);
             navigate("/results");
         }, 20000);
-    }
+    };
 
     return (
         <div className="webcam-container">

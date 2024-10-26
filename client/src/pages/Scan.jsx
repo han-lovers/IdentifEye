@@ -16,17 +16,14 @@ function SingleFileUploader({ setShowImage, setImage, setIsConfirmed, handleCanc
         }
     };
 
-    /**
-     * @brief Upload the file to the server
-     */
-    const handleUpload = async () => {
+    const handleUpload = async (event) => {
+        event.preventDefault();
         setIsLoading(true);
-        setImage(URL.createObjectURL(file));
+        const imageUrl = URL.createObjectURL(file);
+        setImage(imageUrl);
         setIsConfirmed(true); // Reset the left side of the screen
         setFile(null);
         setShowImage(true);
-        // Don't let user to submit if there is no file
-        event.preventDefault();
 
         const fromData = new FormData();
         fromData.append("file", file);
@@ -38,15 +35,14 @@ function SingleFileUploader({ setShowImage, setImage, setIsConfirmed, handleCanc
             });
             const data = await response.json();
 
-            // Function to parse and extract values
+            handleConfirm(imageUrl);
+
             const parseAndExtract = (data) => {
                 const result = {};
 
                 for (const [key, value] of Object.entries(data)) {
-                    // Parse the stringified JSON array
                     const parsedArray = JSON.parse(value);
                     
-                    // Assign the parsed array to the result under the same key
                     result[key] = parsedArray;
                 }
 
