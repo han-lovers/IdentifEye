@@ -13,7 +13,9 @@ const Nav = () => {
 
     return (
         <nav className="nav-bar">
-            <img src={Logo} width={250} height={50} alt="logo" />
+            <Link to="/">
+                <img src={Logo} width={250} height={50} alt="logo" />
+            </Link>
             <div className="menu" onClick={handleMenuOpen}>
                 <span className="line"></span>
                 <span className="line"></span>
