@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Outlet, Link } from 'react-router-dom';
+import  { React, useState } from 'react';
+import { Link } from "react-router-dom";
 import "../css/Header.css";
 import Logo from "../../assets/icons/liverpool-logo.svg";
 
@@ -20,7 +20,9 @@ const Header = () => {
     return (
         <>
             <nav className="nav-bar">
-                <img src={Logo} width={250} height={50} alt="logo" />
+                <Link to="/">
+                    <img src={Logo} width={250} height={50} alt="logo" />
+                </Link>
                 <div className="menu" onClick={handleMenuOpen}>
                     <span className="line"></span>
                     <span className="line"></span>
@@ -28,10 +30,14 @@ const Header = () => {
                 </div>
                 <ul className={`list ${menuOpen ? "open" : ""}`}>
                     <li className="nav-item">
-                        <a className="nav-text" href="/">Home</a>
+                        <Link to="/" className="nav-text">
+                            Home
+                        </Link>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-text" href="/scan">Scan</a>
+                        <Link to="/scan" className="nav-text">
+                            Scan
+                        </Link>
                     </li>
                 </ul>
             </nav>
