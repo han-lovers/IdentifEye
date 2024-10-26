@@ -3,7 +3,12 @@ import WebcamCapture from "../components/webcam.jsx";
 import typeImage from "../assets/icons/upload.png";
 import "../styles/css/Scan.css";
 
-function SingleFileUploader({ setShowImage }) {
+function SingleFileUploader({
+    setShowImage,
+    setImage,
+    setIsConfirmed,
+    handleCancel,
+}) {
     const [file, setFile] = useState(null);
 
     const handleFileChange = (e) => {
@@ -12,11 +17,21 @@ function SingleFileUploader({ setShowImage }) {
             setShowImage(false);
         }
     };
+    // const handleImage = () => {
+    //     setImage(URL.createObjectURL(file));
+    //     setIsConfirmed(true); // Reset the left side of the screen
+    //     setFile(null);
+    //     setShowImage(true);
+    // };
 
     /**
      * @brief Upload the file to the server
      */
     const handleUpload = async () => {
+        setImage(URL.createObjectURL(file));
+        setIsConfirmed(true); // Reset the left side of the screen
+        setFile(null);
+        setShowImage(true);
         // Don't let user to submit if there is no file
         event.preventDefault();
 
@@ -35,21 +50,28 @@ function SingleFileUploader({ setShowImage }) {
 
             console.log("Message: ", message);
             console.log("File path: ", filePath);
-
-        } catch(error) {
+        } catch (error) {
             console.log("Error while fetching: ", error);
         }
     };
 
     return (
         <div className="subeFile">
+            <h2>
+                <strong>Choose your file</strong>
+            </h2>
             <div className="input">
                 <input id="file" type="file" onChange={handleFileChange} />
             </div>
             {file && (
-                <button onClick={handleUpload} className="submit">
-                    Submit
-                </button>
+                <>
+                    <button onClick={handleUpload} className="submit">
+                        Submit
+                    </button>
+                    <button onClick={handleCancel} className="cancel">
+                        Cancel
+                    </button>
+                </>
             )}
         </div>
     );
@@ -77,6 +99,24 @@ function Scan() {
         uploadFile.current.scrollIntoView({ behavior: "smooth" });
     };
 
+    const handleCancel = () => {
+        setShowFile(false);
+        setShowImage(true);
+        setShowOptions(false);
+        setImage(null);
+        setIsConfirmed(false);
+        setIsTakingPhoto(false); // Ensure photo-taking state is reset
+    };
+
+    const handleConfirm = (capturedImage) => {
+        setImage(capturedImage);
+        setIsTakingPhoto(false);
+        setIsConfirmed(true);
+        setShowFile(false);
+        setShowImage(true);
+        setShowOptions(false);
+    };
+
     return (
         <>
             <main>
@@ -96,7 +136,12 @@ function Scan() {
                             </p>
                         </>
                     ) : (
-                        <SingleFileUploader setShowImage={setShowImage} />
+                        <SingleFileUploader
+                            setShowImage={setShowImage}
+                            setImage={setImage}
+                            setIsConfirmed={setIsConfirmed}
+                            handleCancel={handleCancel}
+                        />
                     )}
                     <button className="Button" onClick={handleShowOptions}>
                         Choose
@@ -121,27 +166,21 @@ function Scan() {
                         </div>
                     )}
                 </div>
-                
+
                 {/* Mostrar Webcam o Imagen Capturada */}
                 {isTakingPhoto ? (
                     <WebcamCapture
-                        onCapture={(capturedImage) => {
-                            setImage(capturedImage);
-                            setIsTakingPhoto(false); // Permitir que la imagen permanezca
-                        }}
-                        onCancel={() => {
-                            setIsTakingPhoto(false);
-                            setImage(null); // Reiniciar la imagen al cancelar
-                        }}
+                        onCancel={handleCancel}
+                        onConfirm={handleConfirm}
                     />
                 ) : (
                     image &&
-                    !isConfirmed && ( // Solo mostrar si la imagen no ha sido confirmada
+                    isConfirmed && ( // Solo mostrar si la imagen no ha sido confirmada
                         <div
                             className="webcam-container"
                             style={{ textAlign: "center" }}
                         >
-                            <h2>Imagen capturada:</h2>
+                            <h2>Imagen confirmada:</h2>
                             <img
                                 src={image}
                                 alt="Captured"
@@ -151,42 +190,8 @@ function Scan() {
                                     borderRadius: "10px",
                                 }}
                             />
-                            <button
-                                className="Button"
-                                onClick={() => setIsConfirmed(true)}
-                            >
-                                Confirmar
-                            </button>
-                            <button
-                                className="Button"
-                                onClick={() => {
-                                    setImage(null); // Reiniciar la imagen al cancelar
-                                    setIsConfirmed(false); // Reiniciar confirmación
-                                }}
-                            >
-                                Cancelar
-                            </button>
                         </div>
                     )
-                )}
-                {/* Mostrar mensaje si la imagen ha sido confirmada */}
-                {isConfirmed && (
-                    <div
-                        className="webcam-container"
-                        style={{ textAlign: "center" }}
-                    >
-                        <h2>Imagen confirmada:</h2>
-                        <img
-                            src={image}
-                            alt="Captured"
-                            style={{
-                                width: "100%",
-                                maxWidth: "400px",
-                                borderRadius: "10px",
-                            }}
-                        />
-                        <p>La imagen ha sido confirmada.</p>
-                    </div>
                 )}
             </main>
         </>
