@@ -24,7 +24,7 @@ const WebcamCapture = ({ onCancel, onConfirm }) => {
                 audio={false}
                 ref={webcamRef}
                 screenshotFormat="image/jpeg"
-                width={400}
+                style={{width:"100%"}}
                 videoConstraints={videoConstraints}
             />
             <button onClick={capture}>Tomar foto</button>
