@@ -13,7 +13,33 @@ function SingleFileUploader({ setShowImage }) {
         }
     };
 
-    const handleUpload = async () => {};
+    /**
+     * @brief Upload the file to the server
+     */
+    const handleUpload = async () => {
+        // Don't let user to submit if there is no file
+        event.preventDefault();
+
+        const fromData = new FormData();
+        fromData.append("file", file);
+
+        try {
+            const response = await fetch("/api/upload", {
+                method: "POST",
+                body: fromData,
+            });
+            const data = await response.json();
+
+            const message = data.message;
+            const filePath = data.file_path;
+
+            console.log("Message: ", message);
+            console.log("File path: ", filePath);
+
+        } catch(error) {
+            console.log("Error while fetching: ", error);
+        }
+    };
 
     return (
         <div className="subeFile">
@@ -32,6 +58,7 @@ function SingleFileUploader({ setShowImage }) {
 function Scan() {
     const [showOptions, setShowOptions] = useState(false);
     const [isTakingPhoto, setIsTakingPhoto] = useState(false);
+    // TODO: Make image global
     const [image, setImage] = useState(null);
     const [isConfirmed, setIsConfirmed] = useState(false); // Estado para confirmar la imagen
 
