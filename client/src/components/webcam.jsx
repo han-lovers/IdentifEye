@@ -3,6 +3,12 @@ import Webcam from "react-webcam";
 import PropTypes from "prop-types"; // Importa PropTypes
 import "../styles/css/webcam.css"; // Asegúrate de la ruta correcta
 
+const FACING_MODE_ENVIRONMENT = "environment";
+
+const videoConstraints = {
+    facingMode: FACING_MODE_ENVIRONMENT // Usa la cámara trasera
+}
+
 const WebcamCapture = ({ onCapture, onCancel }) => {
     const webcamRef = useRef(null);
 
@@ -18,6 +24,7 @@ const WebcamCapture = ({ onCapture, onCancel }) => {
                 ref={webcamRef}
                 screenshotFormat="image/jpeg"
                 width={400} // Ajusta el tamaño según sea necesario
+                videoConstraints={videoConstraints}
             />
             <button onClick={capture}>Tomar foto</button>
             <button onClick={onCancel}>Cancelar</button>
