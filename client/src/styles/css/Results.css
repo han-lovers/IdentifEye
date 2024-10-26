@@ -8,6 +8,7 @@
     max-width: 800px;
     margin: auto;
     border-radius: 8px;
+    overflow-x: hidden;
 }
 
 .containerLargo {

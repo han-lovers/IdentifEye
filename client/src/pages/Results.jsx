@@ -3,11 +3,6 @@ import shipping from "../assets/icons/free-delivery.png";
 import stars from "../assets/icons/stars.png";
 import "../styles/css/Results.css";
 
-// const secundaria1 =
-// const secundaria2 =
-// const secundaria3 =
-// const secundaria4 =
-
 function Results() {
     const [similarArr, setSimilarArr] = useState([]);
 
@@ -33,9 +28,13 @@ function Results() {
     }, []);
 
     const fotoPrincipal = matchingData;
-    console.log(fotoPrincipal);
-
     console.log(similarArr);
+
+    // const sec2 = similarArr[1];
+    // const sec3 = similarArr[2];
+    // const sec4 = similarArr[3];
+
+    // const secundaria1 = sec1.data;
 
     return (
         <div>
@@ -102,8 +101,7 @@ function Results() {
                                 <strong>Details:</strong>
                             </p>
                             <p>
-                                la vida es buena pero me quiero matar porque
-                                tengo sueño
+                               Lorem ipsum, dolor sit amet consectetur 
                             </p>
                         </label>
                     </div>
@@ -112,7 +110,7 @@ function Results() {
                             <p>
                                 <strong>Made of:</strong>
                             </p>
-                            <p>dmmvekfgjerkfnernflerngfle,nl</p>
+                            <p>Lorem ipsum dolor sit </p>
                         </label>
                     </div>
                 </div>
@@ -123,12 +121,12 @@ function Results() {
                             <strong>You might like...</strong>
                         </label>
                     </div>
-                    {/* <div className="item2">
-                        <img src={⁠ data:image/jpeg;base64,${secundaria1} ⁠} alt="Imagen 2" className="like-image"/>
-                        <img src={⁠ data:image/jpeg;base64,${secundaria2} ⁠} alt="Imagen 3" className="like-image"/>
+                    <div className="item2">
+                        {/* <img src={`data:image/jpeg;base64,${secundaria1}`} alt="Imagen 2" className="like-image"/> */}
+                        {/* <img src={⁠ data:image/jpeg;base64,${secundaria2} ⁠} alt="Imagen 3" className="like-image"/>
                         <img src={⁠ data:image/jpeg;base64,${secundaria3} ⁠} alt="Imagen 3" className="like-image"/>
-                        <img src={⁠ data:image/jpeg;base64,${secundaria4} ⁠} alt="Imagen 3" className="like-image"/>
-                    </div> */}
+                        <img src={⁠ data:image/jpeg;base64,${secundaria4} ⁠} alt="Imagen 3" className="like-image"/> */}
+                    </div>
                 </div>
             </div>
         </div>
