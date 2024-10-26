@@ -70,10 +70,12 @@ main {
 
 .subeFile {
     margin-top: 20px;
-    padding: 15px;
+    padding: 20px;
     border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f3f3f3;
+    border-radius: 6px;
+    background-color: rgba(241, 219, 233, 0.9); 
+    -webkit-box-shadow: 7px 6px 17px 0px rgba(0,0,0,0.83); 
+    box-shadow: 7px 6px 17px 0px rgba(0,0,0,0.83);
     text-align: left;
   }
   
@@ -90,7 +92,7 @@ main {
     padding: 8px 15px;
     font-size: 14px;
     color: #ffffff;
-    background-color: #28a745;
+    background-color: #e00297;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -98,20 +100,6 @@ main {
   }
   
   .submit:hover {
-    background-color: #218838;
+    background-color: #e00297;
   }
   
-  section p {
-    margin-top: 10px;
-    font-weight: bold;
-  }
-  
-  section ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  section ul li {
-    font-size: 14px;
-    color: #555;
-  }
