@@ -64,6 +64,9 @@ function Results() {
                     <img src={camisa2} alt="Imagen 2" className="like-image"/>
                     <img src={camisa3} alt="Imagen 3" className="like-image"/>
                     <img src={camisa4} alt="Imagen 4" className="like-image"/>
+                    <img src={camisa2} alt="Imagen 2" className="like-image"/>
+                    <img src={camisa3} alt="Imagen 3" className="like-image"/>
+                    <img src={camisa4} alt="Imagen 4" className="like-image"/>
                 </div>
             </div>
         </div>

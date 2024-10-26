@@ -60,10 +60,13 @@
     flex-direction: row; 
     align-items: center;
     align-content: center;
-    justify-content: center;
     gap: 10px;
     color: black;
     width: 500px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .itemBlanco {
@@ -125,3 +128,39 @@
     color: black;
     font-size: 18px; 
   }
+
+  @media (max-width: 768px) {
+    .container {
+        flex-direction: column; 
+        max-width: 100%;
+    }
+
+    .containerColumn {
+        max-width: 100%;
+    }
+
+    .item, .item2, .itemBlanco, .itemBlanco2 {
+        height: 20%;
+        width: auto;
+    }
+
+    .small-image, .like-image {
+        height: 10%;
+        width: auto;
+        margin: 0 auto;
+        border-radius: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .label {
+        font-size: 14px;
+    }
+
+    .small-image, .like-image {
+        height: auto;
+        width: 20%;
+        margin: 0 auto;
+        border-radius: 8px;
+    }
+}
