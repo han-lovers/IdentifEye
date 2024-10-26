@@ -10,6 +10,18 @@
     border-radius: 8px;
   }
 
+  .containerLargo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 20px;
+    background-color: white;
+    max-width: 1000px;
+    margin: auto;
+    border-radius: 8px;
+  }
+
   .containerColumn{
     display: flex;
     flex-direction: column;
@@ -136,6 +148,11 @@
     }
 
     .containerColumn {
+        max-width: 100%;
+    }
+
+    .containerLargo {
+        flex-direction: column; 
         max-width: 100%;
     }
 

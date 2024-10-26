@@ -43,16 +43,22 @@ function Results() {
         </div>
     </div>  
 
-    <div className="container">
+    <div className="containerLargo">
         <div className="containerColumn">
             <div className="itemBlanco2">
                 <label><strong>Info </strong></label>
             </div>
             <div className="itemBlanco2">
-                <label>Details</label>
+                <label>
+                    <p><strong>Details:</strong></p>
+                    <p>la vida es buena pero me quiero matar porque tengo sueño</p>
+                    </label>
             </div>
             <div className="itemBlanco2">
-                <label>Made of</label>
+                <label>
+                <p><strong>Made of:</strong></p>
+                <p>dmmvekfgjerkfnernflerngfle,nl</p>
+                </label>
             </div>
         </div>
 
