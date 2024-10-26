@@ -8,62 +8,62 @@ const Home = () => {
             <div className="homepage-content">
                 {/* Carrusel de Promociones */}
                 <section className="categories">
-                    <h2>¿Buscas algo?</h2>
+                    <h2>Looking for something?</h2>
                     <div className="search-container">
                         <input
                             type="text"
                             className="search-bar"
-                            placeholder="Buscar..."
+                            placeholder="Search..."
                         />
                         <Link to="/scan" className="goToScan">
-                            Escanea un objeto
+                            Scan an article
                         </Link>
                     </div>
                 </section>
                 <section className="carousel">
-                    <div className="carousel__item">Promoción 1</div>
-                    <div className="carousel__item">Promoción 2</div>
-                    <div className="carousel__item">Promoción 3</div>
+                    <div className="carousel__item">Promo 1</div>
+                    <div className="carousel__item">Promo 2</div>
+                    <div className="carousel__item">Promo 3</div>
                 </section>
 
                 {/* Sección de Categorías */}
                 <section className="categories">
-                    <h2>Categorías Populares</h2>
+                    <h2>Favourite categories</h2>
                     <div className="category-grid">
-                        <div className="category-card">Electrónica</div>
-                        <div className="category-card">Moda</div>
-                        <div className="category-card">Hogar</div>
-                        <div className="category-card">Juguetes</div>
+                        <div className="category-card">Electronic</div>
+                        <div className="category-card">Fashion</div>
+                        <div className="category-card">Home</div>
+                        <div className="category-card">Toys</div>
                     </div>
                 </section>
 
                 {/* Sección de Productos Destacados */}
                 <section className="featured-products">
-                    <h2>Productos Destacados</h2>
+                    <h2>Features products</h2>
                     <div className="product-grid">
                         <div className="product-card">
-                            <div className="product-image">Imagen 1</div>
-                            <h3>Producto 1</h3>
-                            <p>Descripción breve del producto 1.</p>
-                            <button>Ver Detalles</button>
+                            <div className="product-image">Image 1</div>
+                            <h3>Product 1</h3>
+                            <p>Brief description.</p>
+                            <button>See Details</button>
                         </div>
                         <div className="product-card">
-                            <div className="product-image">Imagen 2</div>
-                            <h3>Producto 2</h3>
-                            <p>Descripción breve del producto 2.</p>
-                            <button>Ver Detalles</button>
+                            <div className="product-image">Image 2</div>
+                            <h3>Product 2</h3>
+                            <p>Brief description.</p>
+                            <button>See Details</button>
                         </div>
                         <div className="product-card">
-                            <div className="product-image">Imagen 3</div>
-                            <h3>Producto 3</h3>
-                            <p>Descripción breve del producto 3.</p>
-                            <button>Ver Detalles</button>
+                            <div className="product-image">Image 3</div>
+                            <h3>Product 3</h3>
+                            <p>Brief description.</p>
+                            <button>See Details</button>
                         </div>
                         <div className="product-card">
-                            <div className="product-image">Imagen 4</div>
-                            <h3>Producto 4</h3>
-                            <p>Descripción breve del producto 4.</p>
-                            <button>Ver Detalles</button>
+                            <div className="product-image">Image 4</div>
+                            <h3>Product 4</h3>
+                            <p>Brief description.</p>
+                            <button>See Details</button>
                         </div>
                     </div>
                 </section>
