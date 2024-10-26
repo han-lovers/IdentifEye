@@ -38,7 +38,30 @@ function SingleFileUploader({ setShowImage, setImage, setIsConfirmed, handleCanc
             });
             const data = await response.json();
 
-            console.log(data);
+            // Function to parse and extract values
+            const parseAndExtract = (data) => {
+                const result = {};
+
+                for (const [key, value] of Object.entries(data)) {
+                    // Parse the stringified JSON array
+                    const parsedArray = JSON.parse(value);
+                    
+                    // Assign the parsed array to the result under the same key
+                    result[key] = parsedArray;
+                }
+
+                return result;
+            };
+
+            let parsedData = await parseAndExtract(data);
+
+            const similarArr = parsedData.matching;
+            const matchingArr = parsedData.similar;
+
+            const matchingArrporfavor = matchingArr.pop();
+
+            localStorage.setItem("matching", JSON.stringify(matchingArrporfavor));
+            localStorage.setItem("similar", JSON.stringify(similarArr));
         } catch (error) {
             console.log("Error while fetching: ", error);
         } finally {
