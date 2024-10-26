@@ -6,7 +6,15 @@ import LoadingScreen from "../components/LoadingScreen.jsx";
 import typeImage from "../assets/icons/upload.png";
 import "../styles/css/Scan.css";
 
-function SingleFileUploader({ setShowImage, setImage, setIsConfirmed, handleCancel, handleConfirm, setIsLoading, navigate }) {
+function SingleFileUploader({
+    setShowImage,
+    setImage,
+    setIsConfirmed,
+    handleCancel,
+    handleConfirm,
+    setIsLoading,
+    navigate,
+}) {
     const [file, setFile] = useState(null);
 
     const handleFileChange = (e) => {
@@ -42,7 +50,7 @@ function SingleFileUploader({ setShowImage, setImage, setIsConfirmed, handleCanc
 
                 for (const [key, value] of Object.entries(data)) {
                     const parsedArray = JSON.parse(value);
-                    
+
                     result[key] = parsedArray;
                 }
 
@@ -56,15 +64,17 @@ function SingleFileUploader({ setShowImage, setImage, setIsConfirmed, handleCanc
 
             const matchingArrporfavor = matchingArr.pop();
 
-            localStorage.setItem("matching", JSON.stringify(matchingArrporfavor));
+            localStorage.setItem(
+                "matching",
+                JSON.stringify(matchingArrporfavor)
+            );
             localStorage.setItem("similar", JSON.stringify(similarArr));
         } catch (error) {
             console.log("Error while fetching: ", error);
         } finally {
-            setTimeout( () => {
+            setTimeout(() => {
                 setIsLoading(false);
                 navigate("/results");
-                
             }, 20000);
         }
     };
@@ -153,6 +163,31 @@ function Scan() {
             });
             // Intentar analizar la respuesta como JSON
             const data = await uploadResponse.json();
+            handleConfirm(image);
+            const parseAndExtract = (data) => {
+                const result = {};
+
+                for (const [key, value] of Object.entries(data)) {
+                    const parsedArray = JSON.parse(value);
+
+                    result[key] = parsedArray;
+                }
+
+                return result;
+            };
+
+            let parsedData = await parseAndExtract(data);
+
+            const similarArr = parsedData.matching;
+            const matchingArr = parsedData.similar;
+
+            const matchingArrporfavor = matchingArr.pop();
+
+            localStorage.setItem(
+                "matching",
+                JSON.stringify(matchingArrporfavor)
+            );
+            localStorage.setItem("similar", JSON.stringify(similarArr));
             console.log(data);
         } catch (error) {
             console.error("Error al subir la imagen: ", error);
@@ -170,10 +205,9 @@ function Scan() {
         handleUploadConfirmedImage(capturedImage); // Call the upload function here
     };
 
-
     return (
         <>
-           {isLoading ? (
+            {isLoading ? (
                 <LoadingScreen />
             ) : (
                 <main>
@@ -240,7 +274,7 @@ function Scan() {
                             <div
                                 className="webcam-container"
                                 style={{ textAlign: "center" }}
-                                ref={uploadFile}  // Attach the ref here
+                                ref={uploadFile} // Attach the ref here
                             >
                                 <h2>Imagen confirmada:</h2>
                                 <img
@@ -257,7 +291,6 @@ function Scan() {
                     )}
                 </main>
             )}
- 
         </>
     );
 }
