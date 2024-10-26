@@ -45,11 +45,7 @@ function SingleFileUploader({
             });
             const data = await response.json();
 
-            const message = data.message;
-            const filePath = data.file_path;
-
-            console.log("Message: ", message);
-            console.log("File path: ", filePath);
+            console.log(data);
         } catch (error) {
             console.log("Error while fetching: ", error);
         }

@@ -1,5 +1,6 @@
 import os
 from flask import Flask, request, jsonify
+from scripts.main import ImageSimilarityFinder
 
 app = Flask(__name__)
 
@@ -22,10 +23,17 @@ def upload_image():
     file_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
     file.save(file_path)
 
-    # You can now process the image (e.g., using PIL, OpenCV, etc.)
-    # ...
+    finder = ImageSimilarityFinder(
+        firebase_key_path='./secret/serviceAccountKey.json',
+        firestore_collection='embeddings'
+    )
 
-    return jsonify({"message": "Image uploaded successfully", "file_path": str(file_path)})
+    matching_images = finder.find_and_prepare_similar_images(
+        input_image_path=str(file_path),
+        folder='./secret/imagenes'
+    )
+
+    return jsonify(matching_images)
 
 if __name__ == "__main__":
     app.run(debug=True,host='0.0.0.0',port=int(os.environ.get('PORT', 8080)))
