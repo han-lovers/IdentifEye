@@ -10,7 +10,7 @@ function App() {
     return (
         <>
             <BrowserRouter>
-              <Header /> {/* Add header to every route */}
+              <Header />
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/scan" element={<Scan />} />
